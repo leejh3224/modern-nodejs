@@ -1,0 +1,54 @@
+version: "3.5" # 설치된 docker 버전에 따라 다릅니다!
+services:
+  server:
+    container_name: server
+    build: . # Dockerfile이 위치한 경로
+    ports:
+      - "3030:3031" # 연결할 포트
+    environment: # 환경변수 설정
+      - NODE_PATH=src
+      - DB_HOST=mongo
+      - DB=test
+      - REDIS_PORT=6379
+      - REDIS_HOST=redis
+    networks:
+      - backend
+
+  mongodb:
+    container_name: mongo
+    image: mvertes/alpine-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo:/data/db
+    networks:
+      - backend
+  
+  redis:
+    container_name: redis
+    image: redis:4.0.8-alpine # 역시 alpine 이미지를 사용해줍니다.
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data/redis
+    restart: always
+    networks: # 서버와 같은 네트워크, 잊지 마세요!
+      - backend
+
+  nginx:
+    container_name: nginx
+    build: 
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "3031:80"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  mongo:
+  redis:

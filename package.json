@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js --exec babel-node",
+    "start": "nodemon src/ --exec babel-node",
     "build": "webpack --mode production"
   },
   "devDependencies": {
@@ -15,6 +15,8 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "mongoose": "^5.0.9",
+    "redis": "^2.8.0"
   }
 }
