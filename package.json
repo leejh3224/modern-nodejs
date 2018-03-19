@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js --exec babel-node",
+    "start": "nodemon src/ --exec babel-node",
     "build": "webpack --mode production"
   },
   "devDependencies": {
