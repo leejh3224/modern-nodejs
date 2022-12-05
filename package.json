@@ -15,7 +15,7 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "mongoose": "^5.0.9",
     "redis": "^2.8.0"
   }
